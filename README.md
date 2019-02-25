@@ -1,7 +1,23 @@
 # Hughes
-Hughes Repo
+## Kentik CD Populator script
 
-usage: Kentik-Hughes-Dev.py [-h]
+This script was specifically created for Hughes, but can be used by anyone to upload Populators to a Custom Dimension. It uses the Kentik Tagging API, located at https://github.com/kentik/kentikapi-py/tree/master/kentikapi/v5 for Batch Uploads. By default, batch uploads are set to 'Batch=True' so the CSV file used must be updated/changed after the initial populator upload, as all values within the CSV file will be checked against the existing populators within the specified Custom Dimension, and either added, modified, or removed, depending on this.
+
+The format of the required columns of the CSV File for this is meant to be as follows:
+
+[HNS_COMPANY_ID],[CUSTOMER_LOCATION_ID],[Device],[LANIP1],[LANSUBNET1],[LANIP2],[LANSUBNET2],...[LANIPx],[LANSUBNETx]
+
+The Populator Value is set to [HNS_COMPANY_ID]-[CUSTOMER_LOCATION_ID] 
+Ex: [HNS_COMPANY_ID] = XXX, [CUSTOMER_LOCATION_ID] = 1234 will generate a Populator Value of XXX-1234.
+
+The Direction of each populator will be set to EITHER, currently you will need to modify the script if you wish to change the direction to either SRC or DST.
+
+The [Device] value is the regex value for the Device Name matching.
+The [LANIPx] field is the IP address, and the [LANSUBNETx] field is the subnet mask value, in a x.x.x.x format, which will be translated within the script to a CIDR value.
+
+## Kentik-v1.py
+
+usage: Kentik-v1.py [-h]
                             {delete-all-populators,create-populators,validate-data}
                             ...
 
@@ -14,12 +30,12 @@ positional arguments:
     validate-data       Validates the input data for building populators.
 
 
-Delete All Populators: 
+## Delete All Populators: 
 
 optional arguments:
   -h, --help            show this help message and exit
   
-  usage: Kentik-Hughes-Dev.py delete-all-populators [-h] [--quiet]
+  usage: Kentik-v1.py delete-all-populators [-h] [--quiet]
                                                   [--tracelevel {error,warn,info,debug}]
                                                   [--maxops MAXOPS]
                                                   [--include INCLUDE]
@@ -40,9 +56,9 @@ optional arguments:
   --name NAME           The name of the custom dimension from where all
                         populators will be deleted.
                         
-Create Populators:
+## Create Populators:
 
-usage: Kentik-Hughes-Dev.py create-populators [-h] [--quiet]
+usage: Kentik-v1.py create-populators [-h] [--quiet]
                                               [--tracelevel {error,warn,info,debug}]
                                               [--maxops MAXOPS]
                                               [--include INCLUDE]
@@ -66,9 +82,9 @@ optional arguments:
                         required to create populators.
   --batch               Create populators using batch mode.
   
-  Validate Date (CSV):
+  ## Validate Date (CSV):
   
-  usage: Kentik-Hughes-Dev.py validate-data [-h] [--quiet]
+  usage: Kentik-v1.py validate-data [-h] [--quiet]
                                           [--tracelevel {error,warn,info,debug}]
                                           [--maxops MAXOPS]
                                           [--include INCLUDE]
