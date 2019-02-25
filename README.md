@@ -5,14 +5,14 @@ This script was specifically created for Hughes, but can be used by anyone to up
 
 The format of the required columns of the CSV File for this is meant to be as follows:
 
-[HNS_COMPANY_ID],[CUSTOMER_LOCATION_ID],[Device],[LANIP1],[LANSUBNET1],[LANIP2],[LANSUBNET2],...[LANIPx],[LANSUBNETx]
+[HNS_COMPANY_ID],[CUSTOMER_LOCATION_ID],[device_name],[LANIP1],[LANSUBNET1],[LANIP2],[LANSUBNET2],...[LANIPx],[LANSUBNETx]
 
 The Populator Value is set to [HNS_COMPANY_ID]-[CUSTOMER_LOCATION_ID] 
 Ex: [HNS_COMPANY_ID] = XXX, [CUSTOMER_LOCATION_ID] = 1234 will generate a Populator Value of XXX-1234.
 
 The Direction of each populator will be set to EITHER, currently you will need to modify the script if you wish to change the direction to either SRC or DST.
 
-The [Device] value is the regex value for the Device Name matching.
+The [device_name] value is the regex value for the Device Name matching.
 The [LANIPx] field is the IP address, and the [LANSUBNETx] field is the subnet mask value, in a x.x.x.x format, which will be translated within the script to a CIDR value.
 
 ## Kentik-v1.py
