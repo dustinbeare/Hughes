@@ -147,7 +147,7 @@ def make_location_id(row):
     return location_id
 
 def make_device(row):
-    device_regex = f'{row["Device"]}'
+    device_regex = f'{row["device_name"]}'
     return device_regex
 
 def netmask_to_cidr(netmask):
